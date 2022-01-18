@@ -19,3 +19,7 @@ yarn dev
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You may need to do the following:
+
+Google Account > Security > Less secure app access : off to on

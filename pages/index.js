@@ -7,6 +7,9 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showFailureMessage, setShowFailureMessage] = useState(false);
+
   //   Form validation
   const [errors, setErrors] = useState({});
   function validateEmail(email) {
@@ -68,12 +71,19 @@ export default function Home() {
         console.log("Response received");
         if (res.status === 200) {
           console.log("Response succeeded!");
+          setShowSuccessMessage(true);
+          setShowFailureMessage(false);
+
           setSubmitted(true);
           setName("");
           setEmail("");
           setMessage("");
+        } else {
+          setShowSuccessMessage(false);
+          setShowFailureMessage(true);
         }
       });
+
       // const { error } = await res.json();
       // if (error) {
       //   console.log("errorerror:", error);
@@ -89,6 +99,7 @@ export default function Home() {
           <label htmlFor="name">Name</label>
           <input
             type="text"
+            value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -103,6 +114,7 @@ export default function Home() {
           <label htmlFor="email">Email</label>
           <input
             type="email"
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -117,6 +129,7 @@ export default function Home() {
           <label htmlFor="message">Message</label>
           <input
             type="text"
+            value={message}
             onChange={(e) => {
               setMessage(e.target.value);
             }}
@@ -133,6 +146,14 @@ export default function Home() {
           //   handleSubmit(e);
           // }}
         />
+        <div>
+          {showSuccessMessage && (
+            <p>Thankyou! Your Message has been delivered.</p>
+          )}
+          {showFailureMessage && (
+            <p>Oops! Something went wrong, please try again.</p>
+          )}
+        </div>
       </form>
     </div>
   );

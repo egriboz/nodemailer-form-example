@@ -17,7 +17,7 @@ export default function handler(req, res) {
     to: "egriboz@gmail.com",
     subject: `[Web Contact Form] Message From ${req.body.name}`,
     text: req.body.message + " | Sent from: " + req.body.email,
-    html: `<div>${req.body.message}</div><p>Sent from: ${req.body.email}</p>`,
+    html: `<div style="border:1px solid #eceff1;padding: 30px;"><h1>Contact Form with Next.js and Nodemailer</h1><p>${req.body.message}</p><p style="padding: 30px 0 0 0;margin: 30px 0 0 0;border-top: 1px solid #eceff1;">Sent from: ${req.body.email}</p><p style="padding:30px 0 0 0;margin:30px 0 0 0;border-top:1px solid #eceff1"><img src="https://egriboz.com/raven.gif"></p></div>`,
   };
 
   transporter.sendMail(mailData, function (err, info) {

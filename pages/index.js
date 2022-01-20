@@ -66,6 +66,7 @@ export default function Home() {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify(data),
       }).then((res) => {
         console.log("Response received");
